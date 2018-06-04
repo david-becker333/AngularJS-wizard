@@ -1,0 +1,262 @@
+<!doctype html>
+<html ng-app="migrationUtils">
+  <head>
+    <meta charset="utf-8">
+    <title>Migration Utility</title>
+    
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" 
+      type="image/png" 
+      href="veritas-logo-favicon.png">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <link rel="stylesheet" href="assets/css/jquery-ui-1.10.4.custom.min.css"/>
+    <link rel="stylesheet" href="assets/css/jquery.qtip.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+    <!--<link rel="stylesheet" href="assets/css/bootstrap-responsive.css">-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+    <base href="/" />
+  </head>
+  <body ng-cloak>
+    <script type="text/javascript">
+
+    // This holds the folder path offset on NBA i.e. '/modules/manage/migration/'
+    var contextPath = "";
+
+    // path for module common assets 'modules/common/'
+    var commonsPath = "";
+
+    // Add global message to i18nMessagess objects.
+    var i18nMessages = {};
+
+    // Add global validation errors to i18nMessages.translations
+    i18nMessages.translations = {};
+    i18nMessages.translations['en_US'] = {
+
+        // validation messages
+        'defaultMsg': 'There was an message for {0}',
+        'email': 'Please enter a valid email address',
+        'minlength': 'Please enter at least {0} characters',
+        'maxlength': 'You have entered more than the maximum {0} characters',
+        'min': 'Please enter the minimum number of 1',
+        'max': 'Please enter the maximum number of {0}',
+        'required': 'This field is required',
+        'date': 'Please enter a valid date',
+        'pattern': 'Please ensure the entered information adheres to this pattern {0}',
+        'number': 'Please enter a valid number',
+        'url': 'Please enter a valid URL in the format of http(s)://wwww.google.com',
+        'error.policytype.min': 'At least one policy type must be selected.',
+        'error.basedontime.required': 'Selection is required',
+        'error.policytype.min': 'At least one policy type must be selected',
+        'error.endtime.lowerthan': 'The start time cannot exceed the end time.',
+        'error.daysofweek.min': 'At least one day of the week should be selected.',
+
+
+        'label.select': 'Select',
+        'label.selectall': 'Select All',
+        'label.clearall': 'Clear All',
+        'label.ok': 'Ok',
+        'label.cancel': 'Cancel',
+        'label.close': 'Close',
+        'label.start': 'Start',
+        'label.next': 'Next',
+        'label.back': 'Back',
+
+        'migration.start.server': 'Configure a migration task to move data from any NetBackup media server (source) to any other NetBackup media server (destination) within the same NetBackup domain.',
+        'migration.start.policy': 'Select to automatically update the affected NetBackup policies with the new backup destinations.',
+        'migration.start.calendar': 'Schedule migration jobs to run at your convenience. Configure migration to run on specific days at specific times, at intervals that work best for your workload environment.',
+        'migration.wizard.startmigration': 'Start Migration',
+        'migration.wizard.source': 'Source',
+        'migration.wizard.sourcemedia': 'Source media server:',
+        'migration.wizard.sourcediskpool': ' Source disk pool:',
+        'migration.wizard.dest': 'Destination',
+        'migration.wizard.destmedia': 'Destination media server:',
+        'migration.wizard.destdiskpool': 'Destination disk pool:',
+        'migration.wizard.diskpoolnotequal': 'The source disk pool and the destination disk pool cannot be the same.',
+        'migration.wizard.mostrecent': 'Most recent',
+        'migration.wizard.all': 'All',
+        'migration.wizard.custom': 'Custom',
+        'migration.wizard.basedontime': 'Based on time:',
+        'migration.wizard.imagetype': 'Image type:',
+        'migration.wizard.allimages': 'All backup images',
+        'migration.wizard.onlyfullimages': 'Last full backup images',
+        'migration.wizard.allimages.tooltip': 'Migrate all backup images to the destination storage. The migration may require more time depending on the system load.',
+        'migration.wizard.onlyfullimages.tooltip': 'Migrate the last full backup images to the destination storage. Select this option to perform a quick migration. ',
+        'migration.wizard.allbackupimages.tip': 'Migrate all backup images to the destination storage. The migration may require more time depending on the system load.',
+        'migration.wizard.latestfullbackupimages.tip': 'Migrate the last full backup images to the destination storage. Select this option to perform a quick migration.',
+        'migration.wizard.policyname': 'Policy name:',
+        'migration.wizard.policydescription': 'Select the policy types and backup images to migrate.',
+        'migration.wizard.casesensitive': '(case sensitive)',
+        'migration.wizard.policyname.hint.title': 'To perform an advanced search, use the * and ? characters as follows:',
+        'migration.wizard.policyname.hint.p1.0': 'Use an asterisks (*) to represent one or more characters. For example, entering',
+        'migration.wizard.policyname.hint.p2.0': 'Use a question mark (?) to represent one character. For example, entering',
+        'migration.wizard.policyname.hint.policy*': ' policy*',
+        'migration.wizard.policyname.hint.policy?': ' policy?',
+        'migration.wizard.policyname.hint.returns': ' returns',
+        'migration.wizard.policyname.hint.policy': ' policy',
+        'migration.wizard.policyname.hint.policy1': ' policy1',
+        'migration.wizard.policyname.hint.policy2': ' policy2',
+        'migration.wizard.policyname.hint.policy12': ' policy12',
+        'migration.wizard.policyname.hint.policy123': ' policy123',
+        'migration.wizard.policyname.hint.comma': ',',
+        'migration.wizard.policyname.hint.stop': '.',
+        'migration.wizard.policyname.hint.and': ' and',
+        'migration.wizard.policyname.hint.not': ' not',
+        'migration.wizard.policyname.hint.or': ' or',
+
+        'migration.wizard.policytype': 'Policy type:',
+        'migration.wizard.policytypeselectedmention': 'Select at least one policy type to continue the migration configuration.',
+        'migration.wizard.current.stu': 'Current Storage Unit',
+        'migration.wizard.new.stu': 'New Storage Unit',
+        'migration.wizard.current.slp': 'Current Storage Lifecycle Policy',
+        'migration.wizard.new.slp': 'New Storage Lifecycle Policy',
+        'migration.wizard.convertpolicy': 'Convert policies during migration',
+        'migration.wizard.convertpolicycheck.warn': 'If this option is not checked, any new backups that are created after the migration completes are not saved to the new destination storage. Veritas recommends that you specify a new Storage Unit or Storage Lifecycle Policy so that new backup images automatically go to the new destination storage.',
+        'migration.wizard.storageunits': 'Storage Units',
+        'migration.wizard.storageunits.desc': 'Select a New Storage Unit as the new backup destination. After the migration completes, the policies on the Current Storage Unit will be automatically updated to use the New Storage Unit.',
+        'migration.wizard.storagepolicies': 'Storage Lifecycle Policies',
+        'migration.wizard.storagepolicies.desc': 'Select a New Storage Lifecycle policy for the new backup. After the migration completes, the new storage lifecycle policies that you selected will automatically apply to the new backup.',
+        'migration.wizard.storagepolicies.warn': 'Make sure that you specify at least one new storage unit or one storage lifecycle policy to continue the policy conversion.',
+        'migration.wizard.startdate': 'Start date:',
+        'migration.wizard.migrationwindow': 'Migration window:',
+        'migration.wizard.starttime': 'Start time:',
+        'migration.wizard.endtime': 'End time:',
+        'migration.wizard.startendtime.warn': 'Enter a valid Start/End time.',
+        'migration.wizard.workdayofweek.warn': 'This field is required',
+        'migration.wizard.duration': 'Duration of Migration window',
+        'migration.wizard.day(s)': 'day(s)',
+        'migration.wizard.time(s)': 'time(s)',
+        'migration.wizard.of': 'of',
+        'migration.wizard.days': 'days',
+        'migration.wizard.hours': 'hours',
+        'migration.wizard.hour(s)': 'hour(s)',
+        'migration.wizard.mins': 'mins',
+        'migration.wizard.min(s)': 'min(s)',
+        'migration.wizard.day': 'day',
+        'migration.wizard.hour': 'hour',
+        'migration.wizard.min': 'min',
+        'migration.wizard.forcefinish': 'The migration job stops when the End time of the Migration window expires.',
+        'migration.wizard.repeatfor': 'Run migration for',
+        'migration.wizard.repeatfordays': 'Days',
+        'migration.wizard.daystorun': 'Run on:',
+        'migration.wizard.dow.m': 'Mon',
+        'migration.wizard.dow.tu': 'Tue',
+        'migration.wizard.dow.w': 'Wed',
+        'migration.wizard.dow.th': 'Thurs',
+        'migration.wizard.dow.f': 'Fri',
+        'migration.wizard.dow.sa': 'Sat',
+        'migration.wizard.dow.su': 'Sun',
+        'migration.status.migrationtaskid': 'Task ID',
+        'migration.status.elapsedtime': 'Progress',
+        'migration.status.actions': 'Actions',
+        'migration.status.status': 'Status',
+        'migration.status.transferrate': 'Transfer Rate',
+        'migration.status.migrationwindow': 'Migration Window',
+        'migration.status.imagesmigrated': 'Images Migrated',
+        'migration.status.datamoved': 'Data Moved',
+        'migration.status.progress': 'Progress',
+        'migration.status.view': 'View',
+        'migration.status.cancel': 'Cancel',
+        'migration.status.jobdetails': 'Job Details',
+        'migration.status.policyconverted': 'Policies Converted',
+        'migration.status.outcome': 'Outcome',
+        'migration.status.jobdetails': 'Job Details',
+        'migration.status.modal.jobdetails': 'Job Details',
+        'migration.status.modal.canceljob': 'Cancel Migration Task',
+        'migration.status.modal.confirmcancel1': 'The migration task cannot be resumed if you cancel it. To migrate any remaining data, you must configure a new migration task.',
+        'migration.status.modal.confirmcancel2': 'Do you want to cancel it?',
+        'migration.status.day': 'Day',
+        'migration.migrationutility': 'Migration Utility',
+        'migration.migrationutility.desc': 'Use the Migration Utility to migrate data from a media server to a NetBackup appliance media server.',
+        'migration.migrationstatus': 'Migration Status',
+        'migration.learnmore': 'Learn more',
+        'migration.newmigrationjob': 'Configure Migration',
+        'migration.setupmigrationjob': 'Setup a Migration Job',
+        'migration.keyfeatures': 'Key Features:',
+        'migration.keyfeatures.l1': 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.',
+        'migration.taskdetails.modal.taskconfigdetails': 'Migration Task Configuration Details',
+        'migration.taskdetails.modal.jobid': 'Migration Task ID',
+        'migration.taskdetails.modal.source': 'Source',
+        'migration.taskdetails.modal.dest': 'Destination',
+        'migration.taskdetails.modal.criteria': 'Selection Criteria',
+        'migration.taskdetails.modal.policytype': 'Policy type:',
+        'migration.taskdetails.modal.policyname': 'Policy name:',
+        'migration.taskdetails.modal.imgtype': 'Image type:',
+        'migration.taskdetails.modal.policyconv': 'Policy conversion',
+        'migration.taskdetails.modal.mediaserver': 'Media server:',
+        'migration.taskdetails.modal.diskpool': 'Disk pool:',
+        'migration.taskdetails.modal.policyconv.desc': 'Convert policies during migration',
+        'migration.taskdetails.modal.schedule': 'Migration schedule',
+        'migration.taskdetails.modal.schedule.window': 'Migration window:',
+        'migration.taskdetails.modal.startdate': 'Start date:',
+        'migration.taskdetails.modal.starttime': 'Start time:',
+        'migration.taskdetails.modal.endtime': 'End time:',
+        'migration.taskdetails.modal.duration': 'Duration of Migration window:',
+        'migration.taskdetails.modal.hours': 'hours',
+        'migration.taskdetails.modal.forcecompletion': 'The migration job stops when the End time of the Migration window expires.',
+        'migration.taskdetails.modal.runfor': 'Run migration for:',
+        'migration.taskdetails.modal.daysofweek': 'Run on:',
+        'migration.taskdetails.modal.time(s)': 'time(s)',
+        'migration.taskdetails.modal.caption.stu': 'Storage Unit conversion',
+        'migration.taskdetails.modal.caption.slp': 'Storage Lifecycle Policy conversion',
+        'migration.taskdetails.modal.current.stu': 'Current Storage Unit',
+        'migration.taskdetails.modal.new.stu': 'New Storage Unit',
+        'migration.taskdetails.modal.current.slp': 'Current Storage Lifecycle Policy',
+        'migration.taskdetails.modal.new.slp': 'New Storage Lifecycle Policy',
+        'migration.taskdetails.status.queued': 'QUEUED',
+        'migration.taskdetails.status.running': 'RUNNING',
+        'migration.taskdetails.status.cancelled': 'CANCELLED',
+        'migration.taskdetails.status.success': 'SUCCESS',
+        'migration.taskdetails.status.failed': 'FAILED',
+        'migration.taskdetails.status.undefined': 'UNDEFINED',
+
+        'migration.transaction.result.msg.head': 'An unknown error has occurred.',
+        'migration.transaction.result.msg.umi.start': ' [UMI:',
+        'migration.transaction.result.msg.umi.end': ']',
+        'migration.transaction.result.msg.level.info': '[Info]',
+        'migration.transaction.result.msg.level.error': '[Error]',
+        'migration.transaction.result.msg.httperrorcallback': '- [Error] V-409-887-0021: Http error call back. ',
+        'migration.transaction.result.msg.exception': '- [Error] V-409-887-0020: JavaScript Running Exception. '
+    };
+
+    
+    </script>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. </p>
+    <![endif]-->
+
+    <div ui-view></div>
+
+   
+   <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- run `gulp inject` to automatically populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automatically insert here -->
+    <!-- endinject -->
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+    
+  </body>
+</html>

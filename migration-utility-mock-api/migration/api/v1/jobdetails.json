@@ -1,0 +1,38 @@
+[
+  {
+    "id": 123123,
+    "progressTime": "34 min",
+    "progressActual": 80,
+    "progressScheduled": 100,
+    "status":"Scheduled",
+    "migrationProgress":0,
+    "imagesMigrated":0,
+    "dataMoved":0,
+    "policiesConverted":0,
+    "transferRate":"5 MBps"
+  },
+  {
+    "id": 3453453,
+    "progressTime": "34 min",
+    "progressActual": 5000,
+    "progressScheduled": 100,
+    "status":"Scheduled",
+    "migrationProgress":0,
+    "imagesMigrated":0,
+    "dataMoved":0,
+    "policiesConverted":0,
+    "transferRate":"5 MBps"
+  },
+  {
+    "id": 345345,
+    "progressTime": "34 min",
+    "progressActual": 0,
+    "progressScheduled": 0,
+    "status":"Scheduled",
+    "migrationProgress":0,
+    "imagesMigrated":0,
+    "dataMoved":0,
+    "policiesConverted":0,
+    "transferRate":"5 MBps"
+  }
+]

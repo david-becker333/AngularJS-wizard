@@ -1,0 +1,32 @@
+[
+  {
+    "migrationJobId":1001,
+    "status":"Queued",
+    "migrationProgress":"4 of 10 days",
+    "migrationWindow": "2hr 22mins",
+    "imagesMigrated":12,
+    "dataMoved":148.5,
+    "policiesConverted":2,
+    "transferRate":"5 MBps (avg.)"
+  },
+  {
+    "migrationJobId":1002,
+    "status":"Scheduled",
+    "migrationProgress":"4 of 10 days",
+    "migrationWindow": "22mins",
+    "imagesMigrated":15,
+    "dataMoved":176.5,
+    "policiesConverted":3,
+    "transferRate":"4 MBps"
+  },
+  {
+    "migrationJobId":1003,
+    "status":"Scheduled",
+    "migrationProgress":"4 of 10 days",
+    "migrationWindow": "2hr",
+    "imagesMigrated":5,
+    "dataMoved":102.5,
+    "policiesConverted":1,
+    "transferRate":"3 MBps"
+  }
+]

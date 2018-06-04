@@ -1,0 +1,86 @@
+<form id="wizardForm" name="wizardForm" class="form-horizontal" role="form" form-step-validity>
+    <div class="">
+        
+        <div id="messages" messages="messageQueue"></div>
+
+        <h3>{{ 'migration.wizard.source' | translate }}</h3>
+        <br>
+        <div class="">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <label for="sourceMediaId">{{ 'migration.wizard.sourcemedia' | translate }}</label>
+                    <span class="required-indicator">*</span>
+                </div>
+                <div class="col-sm-4">
+                    <select id="sourceMediaId" class="form-control" 
+                            ng-model="context.jobModel.sourceMedia"
+                            ng-options="e.value as e.label for e in sourceMediaOptions"
+                            required
+                            required-err-type="required">
+                    </select>
+                </div>
+
+            </div>
+        </div>
+  
+        <div class="">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <label for="sourceDiskId">{{ 'migration.wizard.sourcediskpool' | translate }}</label>
+                    <span class="required-indicator">*</span>
+                </div>
+                <div class="col-sm-4">
+                    <select id="sourceDiskId" 
+                            class="form-control" 
+                            ng-model="context.jobModel.sourceDiskPool"
+                            ng-options="e.value as e.label for e in sourceDiskOptions"
+                            required
+                            required-err-type="required">
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+        <br>
+        <h3>{{ 'migration.wizard.dest' | translate }}</h3>
+        <br>
+        <div class="">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <label for="destinationMediaId">{{ 'migration.wizard.destmedia' | translate }}</label>
+                    <span class="required-indicator">*</span>
+                </div>
+                <div class="col-sm-4">
+                    <select id="destinationMediaId" class="form-control"
+                            ng-model="context.jobModel.destinationMedia"
+                            ng-options="e.value as e.label for e in destinationMediaOptions"
+                            required
+                            required-err-type="required">
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <label for="destinationDiskPoolId">{{ 'migration.wizard.destdiskpool' | translate }}</label>
+                    <span class="required-indicator">*</span>
+                </div>
+                <div class="col-sm-4">
+                    <select id="destinationDiskPoolId" class="form-control"
+                            ng-model="context.jobModel.destinationDiskPool"
+                            ng-options="e.value as e.label for e in destinationDiskPoolOptions"
+                            required
+                            required-err-type="required">
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</form>

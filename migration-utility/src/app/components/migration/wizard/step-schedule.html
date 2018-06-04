@@ -1,0 +1,115 @@
+<form id="wizardForm" name="wizardForm" class="form-horizontal" role="form" form-step-validity>
+
+
+    <div class="">
+        <div class="form-group">
+            <div class="col-sm-2">
+                <label for="startDateId">{{ 'migration.wizard.startdate' | translate }}</label>
+            </div>
+            <div class="col-sm-10">
+              <div class="date">
+                
+                <input id="startDateId" type="text" class="form-control" readonly
+                       datepicker-options="startDatePicker.options"
+                       ng-model="context.jobModel.startDate" uib-datepicker-popup="{{startDatePicker.format}}"  
+                       is-open="startDatePicker.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" >
+               
+                      <div class="icon" ng-click="startDatePicker.open()"><i class="glyphicon glyphicon-calendar"></i></div>
+                      
+                 </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="">
+        <div class="form-group" ng-class="{ 'has-error': wizardForm.startTimeId.$invalid || wizardForm.endTimeId.$invalid }">
+            <div class="col-sm-2">
+                <label class="migration-offset">{{ 'migration.wizard.migrationwindow' | translate }}</label>
+                <span class="required-indicator">*</span>
+            </div>
+            <div class="col-sm-10">
+       
+                <div class="time">
+
+                    <label for="startTimeId">{{ 'migration.wizard.starttime' | translate }}</label>
+                    <input id="startTimeId" name="startTimeId" type="text" 
+                           ng-change="timeSpanChange()" 
+                           uib-timepicker ng-model="context.jobModel.startTime" 
+                           hour-step="startTimePicker.hourStep" 
+                           minute-step="startTimePicker.minuteStep" 
+                           show-meridian="startTimePicker.showMeridian"
+                           max="context.jobModel.endTime"
+                           readonly-input="true">
+                   
+                    <label for="endTimeId" class="time-label-margin">{{ 'migration.wizard.endtime' | translate }}</label>
+                    <input id="endTimeId" name="endTimeId" type="text"  
+                           ng-change="timeSpanChange()" 
+                           uib-timepicker 
+                           ng-model="context.jobModel.endTime" 
+                           hour-step="endTimePicker.hourStep" 
+                           minute-step="endTimePicker.minuteStep" 
+                           show-meridian="endTimePicker.showMeridian"
+                           min="context.jobModel.startTime"
+                           readonly-input="true">
+                   
+                </div>
+              
+                 <p ng-if="(wizardForm.startTimeId.$dirty && wizardForm.startTimeId.$invalid)" 
+                       class="help-block">{{ 'error.endtime.lowerthan' | translate }}</p>
+                <p>{{ 'migration.wizard.duration' | translate }}:&nbsp;{{migrationWindowTime.hours}}&nbsp;{{ 'migration.wizard.hours' | translate }}, {{migrationWindowTime.minutes}}&nbsp;{{ 'migration.wizard.mins' | translate }}</p>
+                <div class="form-inline vmargin5">
+                    <label for="forceCurrentMigrationJobId">
+                            <input id="forceCurrentMigrationJobId" type="checkbox" class="checkbox" 
+                                   ng-model="context.jobModel.forceCurrentMigrationJob"> {{ 'migration.wizard.forcefinish' | translate }}
+                        </label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+     <br>
+    <div class="">
+        <div class="form-group">
+            <div class="col-sm-2">
+                <label>{{ 'migration.wizard.repeatfor' | translate }}</label>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-inline">
+                   <input id="repeatJobDaysId" ng-pattern="/^\d+$/" ng-pattern-err-type="error.numbersonly" required min="1" type="number" ng-model="context.jobModel.repeatJobDays" class="day">
+                </div>
+            </div>
+        </div>
+    </div>
+     <br>
+    <div class="" ng-if="context.jobModel.repeatJobDays > 1">
+        <div  class="form-group"  ng-class="{ 'has-error': wizardForm.daysOfWeekMin.$invalid }">
+            <div class="col-sm-2">
+              <label>{{ 'migration.wizard.daystorun' | translate }}</label>
+              <span class="required-indicator">*</span>
+            </div>
+            <div class="col-sm-10">
+                <ul class="schedule-dow">
+                    <li ng-repeat="day in context.jobModel.daysOfWeekOptions track by $index">
+                        <label for="{{day.label}}Id">
+                            <input id="{{day.label}}Id" type="checkbox" ng-change="setDaysOfWeekMinLength()" ng-model="day.value"> {{day.label}}</label>
+                    </li>
+                </ul>
+               
+               <input style="display:none;"
+                        id="daysOfWeekMin" 
+                        name="daysOfWeekMin" 
+                        type="number"
+                        min="1" 
+                        ng-model="days.daysOfWeekMinSelected"> 
+                <div class="clearfix"></div>
+               <p ng-show="!days.daysOfWeekMinSelectedPristine && wizardForm.daysOfWeekMin.$invalid" class="help-block has-error error-msg">{{ 'error.daysofweek.min' | translate }}</p>
+            
+            </div>
+        </div>
+
+
+    </div>
+    
+
+
+</form>

@@ -1,0 +1,64 @@
+
+  {
+    "id": 123123,
+    "message": "Migration job details are available only after the job has completed.",
+    "source": {
+    	"mediaServer": "nbapp-01",
+    	"diskPool": "dp-adv-nbapp-01"
+    },
+    "destination": {
+    	"mediaServer": "nbapp-04",
+    	"diskPool": "dp-adv-nbapp-04"
+    },
+    "criteria": {
+    	"policyTypes": ["Hyper-V",
+              "SAP",
+              "FlashBackup",
+              "Enterprise-Vault",
+              "PureDisk-Export",
+              "DB2",
+              "Oracle",
+              "NDMP",
+              "FlashBackup-Windows",
+              "Informix-On-BAR",
+              "Vault",
+              "NetWare",
+              "Sybase",
+              "NBU-Catalog",
+              "DataStore",
+              "Lotus-Notes",
+              "AFS",
+              "OS/2",
+              "Standard",
+              "VMWare",
+              "MS-SharePoint",
+              "MS-Exchange-Server",
+              "MS-Windows",
+              "MS-SQL-Server"],
+    	"policyName": "Test Policy",
+    	"imageType": "all-images"
+    },
+    "policy": {
+    	"forceJobCompletion": false,
+    	"stuPolicies": [
+    		 { "current": "stu_disk_nbapp-04-1", "new": "stu_disk_nbapp-04-3" },
+             { "current": "stu_disk_nbapp-04-3", "new": "stu_disk_nbapp-04-4" }
+    	],
+    	"slpPolicies": [
+    		 { "current": "stu_disk_nbapp-04-5", "new": "stu_disk_nbapp-04-6" },
+             { "current": "stu_disk_nbapp-04-7", "new": "stu_disk_nbapp-04-8" }
+    	]
+    },
+    "schedule": {
+    	"startDate": 1494630320445,
+    	"startTime": 1494630320445,
+    	"endTime": 1494630320445,
+    	"durationTime": 4,
+    	"durationDays": 4,
+    	"daysOfWeek": {
+    		"Mon": true,
+    		"Thurs": true
+    	}
+
+    }
+  }

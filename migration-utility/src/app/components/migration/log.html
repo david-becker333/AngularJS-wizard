@@ -1,0 +1,171 @@
+<h2>Configuration Details for Migration Task ID 1</h2>
+<br>
+<h3>Migration Task ID 1</h3>
+<br>
+<div class="row">
+
+    <div class="col-sm-6">
+        <table class="detail-table">
+            <tr class="detail-label" colspan="2">
+                <td>Source</td>
+            </tr>
+            <tr>
+                <td>Media server:</td>
+                <td>nbapp-01</td>
+            </tr>
+            <tr>
+                <td>Disk pool:</td>
+                <td>db-adv-nbapp01</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-sm-6">
+        <table class="detail-table">
+            <tr class="detail-label" colspan="2">
+                <td>Destination</td>
+            </tr>
+            <tr>
+                <td>Media server:</td>
+                <td>nbapp-02</td>
+            </tr>
+            <tr>
+                <td>Disk pool:</td>
+                <td>db-adv-nbapp02</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-5">
+        <table class="detail-table">
+            <tr class="detail-label" colspan="2">
+                <td>Selection Criteria</td>
+            </tr>
+            <tr>
+                <td>Policy type:</td>
+                <td>All</td>
+            </tr>
+            <tr>
+                <td>Policy name:</td>
+                <td>-</td>
+            </tr>
+             <tr>
+                <td>Imgage type:</td>
+                <td>Last full backup image</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+
+<br>
+<div class="row">
+    <div class="col-sm-5">
+        <table class="detail-table">
+            <tr class="detail-label" colspan="2">
+                <td>Policy conversion</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                 <label>
+                  <input name="policy-conversion" type="checkbox" checked>
+                  Convert policies
+                 </label>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<br>
+
+<div class="row">
+    <div class="col-xs-6">
+
+        <div>Storage Unit conversion</div>
+        <br>
+        <table id="policyConversionMapId" st-table="migrationJobDetails.policy.stuPolicies" class="table table-bordered table-mu">
+            <thead>
+                <tr>
+                    <th class="text-center col-sm-3"> {{ 'migration.wizard.current.stu' | translate }}</th>
+                    <th class="text-center col-sm-3"> {{ 'migration.wizard.new.stu' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="policy in migrationJobDetails.policy.stuPolicies">
+                    <td>
+                        {{ policy.stuCurrent }}
+                    </td>
+                    <td> 
+                        {{ policy.stuNew }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+       
+    </div>
+    <div class="col-xs-6">
+        <div>Storage Lifecycle Policy conversion</div>
+        <br>
+        <table id="policyConversionMapId" st-table="migrationJobDetails.policy.slpPolicies" class="table table-bordered table-mu">
+            <thead>
+                <tr>
+                    <th class="text-center col-sm-3"> {{ 'migration.wizard.current.slp' | translate }}</th>
+                    <th class="text-center col-sm-3"> {{ 'migration.wizard.new.slp' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="policy in migrationJobDetails.policy.slpPolicies">     
+                     <td>
+                        {{ policy.slpCurrent }}
+                    </td>
+                    <td> 
+                         {{ policy.slpNew }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+       
+    </div>
+
+
+</div>
+
+<br>
+<div class="row">
+    <div class="col-sm-5">
+        <table class="detail-table">
+            <tr class="detail-label" colspan="2">
+                <td>Migration schedule</td>
+            </tr>
+            <tr>
+                <td>Start date:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Start time:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>End time:</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Start date:</td>
+                <td>-</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-265 388.9 64 64" style="enable-background:new -265 388.9 64 64;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#1B97B2;stroke-width:2;stroke-miterlimit:10;}
+	.st1{fill:#1B97B2;}
+	.st2{fill:#A8B9C1;stroke:#314048;stroke-miterlimit:10;}
+	.st3{fill:#FFFFFF;stroke:#314048;stroke-miterlimit:10;}
+	.st4{fill:none;stroke:#314048;stroke-width:3;stroke-miterlimit:10;}
+	.st5{fill:#314048;}
+	.st6{fill:none;stroke:#314048;stroke-width:2;stroke-miterlimit:10;}
+</style>
+<g>
+	<path class="st0" d="M-233.4,397.6c3.8-4.3,10.7-5.5,15.6-1.9c4.9,3.6,5.7,10.4,2.1,15.3"/>
+	<polyline class="st1" points="-210.8,410.9 -216.5,411.9 -217.5,406.1 	"/>
+	<g>
+		<polyline class="st2" points="-229.2,432.4 -229.2,404.3 -237,396.4 -256,396.4 -256,432.3 -228.9,432.3 		"/>
+		<polyline class="st2" points="-226.5,433.9 -226.5,407 -234,399.5 -252.1,399.5 -252.1,433.8 -226.2,433.8 		"/>
+		<path class="st3" d="M-235.7,422.2"/>
+		<line class="st4" x1="-245.7" y1="407.6" x2="-238.2" y2="407.6"/>
+		<line class="st4" x1="-245.7" y1="425.2" x2="-232.9" y2="425.2"/>
+		<line class="st4" x1="-245.7" y1="413.3" x2="-232.9" y2="413.3"/>
+		<line class="st4" x1="-245.7" y1="419.2" x2="-232.9" y2="419.2"/>
+		<polygon class="st5" points="-234.2,407.9 -226.3,407.9 -234.2,399.6 		"/>
+	</g>
+	<g>
+		<polyline class="st3" points="-212.2,447.4 -212.2,417.9 -220.4,409.7 -240.2,409.7 -240.2,447.3 -211.9,447.3 		"/>
+		<path class="st3" d="M-222.8,433.9"/>
+		<line class="st6" x1="-233.2" y1="418.5" x2="-225" y2="418.5"/>
+		<line class="st6" x1="-233.2" y1="439.2" x2="-219.2" y2="439.2"/>
+		<line class="st6" x1="-233.2" y1="425.4" x2="-219.2" y2="425.4"/>
+		<line class="st6" x1="-233.2" y1="432.3" x2="-219.2" y2="432.3"/>
+		<polygon class="st5" points="-220.5,417.9 -212.3,417.9 -220.5,409.7 		"/>
+	</g>
+</g>
+</svg>

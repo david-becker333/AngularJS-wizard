@@ -1,0 +1,605 @@
+/**
+ *  If you want to override some bootstrap variables, you have to change values here.
+ *  The list of variables are listed here bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss
+ */
+$navbar-inverse-link-color: #5AADBB;
+$icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
+
+/**
+ *  Do not remove the comments below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+
+.maincontent {
+  width: 100%;
+  float:none;
+}
+.main-container {
+  font-size: .95em !important;
+}
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
+
+
+
+.app-header {
+  position: fixed;
+}
+
+.wizard-nav-tabs .nav-tabs {
+  background-color: #fff;
+}
+
+.wizard-nav-tabs .nav-tabs {
+    border-bottom: 2px solid #e7e7e7;
+    border-radius: 0;
+}
+
+.wizard-nav-tabs .nav-tabs .active {
+  border-bottom: 3px solid darkred;
+  border-radius: 0;
+  
+}
+.wizard-nav-tabs .wizard-nav-tab-content {
+   height: 40px;
+   vertical-align: middle;
+   font-weight: normal;
+   white-space: nowrap;
+  /* padding: 0 8px;*/
+  position: relative;
+   
+}
+
+.wizard-nav-tabs .wizard-nav-tab-text {
+   left: 39px;
+    position: absolute;
+    top: 14px;
+}
+/*
+.wizard-nav-tabs .vline {
+   border-left: 1px solid #ccc;
+}*/
+.wizard-nav-tabs .wizard-nav-tab-step {
+   color: #929292;
+    font-size: 2.5em;
+    left: 14px;
+    position: absolute;
+}
+.wizard-nav-tabs .wizard-nav-tab-check  {
+      color: #1bb51e;
+    font-size: 1.8em;
+    left: -9px;
+    position: absolute;
+    top: 10px;
+}
+
+.wizard-nav-tabs .list-group-item {
+   height: 55px;
+   width: 255px;
+   border: 0px;
+}
+.wizard-nav-tabs .list-group-item:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.wizard-nav-tabs .wizard-step-body {
+  min-height: 400px;
+  padding: 20px 0px;
+}
+
+.wizard-nav-tabs .button-group {
+    margin-right: 5px;
+}
+
+.wizard-nav-tabs .checkbox, .radio {
+   padding: 5px;
+
+}
+.wizard-nav-tabs .spread-input {
+   width: 100%;
+}
+.wizard-nav-tabs .date .icon {
+   width: 30px;
+}
+.wizard-nav-tabs .date {
+   display: flex;
+}
+.wizard-nav-tabs .date input {
+   width: 100px;
+}
+.wizard-nav-tabs .date i {
+    color: #7b7b7b;
+    font-size: 1.3em;
+    left: 5px;
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+}
+
+.wizard-nav-tabs .time {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+}
+.wizard-nav-tabs .time .uib-time button {
+ border: 1px solid #CCCCCC;
+    padding: 2px 5px;
+
+}
+.wizard-nav-tabs .time a {
+   outline: 0;
+   color: #b2b2b2;
+}
+.wizard-nav-tabs .uib-time .btn-default {
+    background-color: #ffffff;
+    border: 0;
+} 
+.wizard-nav-tabs .migration-offset {
+  position: relative;
+  top: 40px;
+}
+.wizard-nav-tabs .time label {
+   margin-right: 20px; 
+}
+.wizard-nav-tabs .time-input {
+   width: 70px;
+   margin-left: 10px;
+}
+.wizard-nav-tabs .time-label-margin{
+   margin-left: 20px;
+}
+
+.wizard-nav-tabs .day {
+   width: 50px;
+}
+.wizard-nav-tabs .vmargin5 {
+   margin: 5px 0;
+}
+.wizard-nav-tabs .vmargin10 {
+   margin: 10px 0;
+}
+.wizard-nav-tabs .vmargin15 {
+   margin: 15px 0;
+}
+.wizard-nav-tabs .vmargin20 {
+   margin: 20px 0;
+}
+.wizard-nav-tabs .hmargin5 {
+   margin: 0 5px;
+}
+.wizard-nav-tabs .hmargin10{
+   margin: 0 10px;
+}
+.wizard-nav-tabs .hmargin15{
+    margin: 0 15px;
+}
+.wizard-nav-tabs .hmargin20{
+    margin: 0 20px;
+}
+
+.wizard-nav-tabs .required-indicator {
+  float: none;
+} 
+  
+.wizard-nav-tabs .nav-breadcrumbs {
+   list-style: none;
+
+}
+.wizard-nav-tabs .nav-breadcrumbs li {
+   float: left;
+   width: auto;
+   padding: 5px;
+
+}
+.wizard-nav-tabs .nav-breadcrumbs .arrow{ 
+   position: relative;
+   top: 1px;
+}
+.table-mu thead th {
+  font-weight: normal;
+  background-color: #E0E4E8 !important;
+}
+.table-mu thead {
+   border-collapse: none;
+  
+}
+
+.table-policy-list {
+  width: auto;
+}
+.table-policy-list tbody td {
+  padding: 5px 0;
+}
+.table-policy-list tbody td.spacer {
+  padding-left: 45px;
+}
+.table-policy-list tbody td.vlabel {
+  padding-right: 10px;
+}
+
+.policy-name-cs {
+  
+    left: -4px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 3px;
+}
+
+.policy-name-notes {
+   font-size: 0.85em;
+   margin: 7px 0 0 7px;
+}
+.policy-name-notes ul {
+  list-style-type: disc;
+  margin-left: 12px;
+}
+.policy-type-toggles {
+  margin: 0 0 5px 0;
+}
+.policy-type-toggles a {
+  padding: 5px 0;
+    margin-right: 10px;
+}
+.policy-types {
+   list-style: none;
+
+}
+.policy-types li {
+   float: left;
+   width: 170px;
+}
+.policy-table-caption {
+  background-color: #ccc;
+}
+.image-types-opts label {
+   padding: 2px 14px 0 0;
+}
+.schedule-dow {
+   list-style: none;
+}
+.schedule-dow li {
+   float: left;
+   width: 75px;
+}
+.help-block { 
+    margin-top: 5px;
+    margin-bottom: 5px; 
+}
+
+.migration-details-table tbody > tr > td {
+   line-height: 2.2;
+} 
+
+.migration-details-table tbody > tr.selected {
+  background-color: #E9F4FD;
+}
+
+.job-details-expander-col {
+  padding: 0 !important;
+  background-color: rgb(242,242,242);
+}
+
+.job-actions-col {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+.job-details-table {
+  width: 100%;
+}
+.job-details-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid #ccc;
+  
+}
+.job-details-table tr:last-child td {
+  
+  border-bottom: 0px;;
+}
+.job-details-table > tbody > tr > td {
+   line-height: 1.5;
+} 
+.job-detail-arrow {
+  font-size: 1.95em;
+  color: #757575;
+}
+
+.job-details-arrow-col {
+  width: 50px;
+}
+
+.detail-offset-col {
+  border-bottom: 0 !important;
+}
+.detail-offset {
+  width: 17px;
+}
+
+.progress-bar {
+    
+    height: 5px;
+    position: relative;
+    bottom: -7px;
+    width: 100%;
+}
+
+.stack-bar-wrapper {
+  display: inline-flex;
+  position: relative;
+  bottom: -4px;
+  width: 125px;
+}
+
+.stacked-bar-graph {
+  flex-grow: 1;
+  
+  height: 5px;
+ // background: #eee;
+  color:#414042;
+
+  div {
+    display: inline-block;
+    height:100%;
+    box-sizing: border-box;
+    float: left;
+  //  color: #fff;
+    font-weight: bold;
+    font-family: arial, sans-serif;
+    padding: 0px;
+
+  }
+
+  .actual {
+    background: #1072BB;
+  }
+  .scheduled {
+    background: #A7A9AC;
+  }
+  .over-actual {
+    background: #D11D31;
+  }
+  
+}
+
+.progress-time {
+  position: relative;
+    bottom: -12px;
+    font-size: 1.0em;
+}
+
+.body-content {
+  padding: 20px;
+}
+
+.wizard-modal-window .body-content {
+    background-color: #fff;
+}
+.wizard-detail-modal-window .modal-body {
+    background-color: #fff;
+}
+.wizard-detail-modal-window .modal-dialog {
+  width: 876px;
+  height: 657px;
+}
+.modal-body-wizard {
+    padding: 0 !important;
+    height: 400px;
+    background-color: #F4F5F6;
+    overflow-y: auto;
+}
+
+.modal-alert {
+  text-align: center;
+}
+.modal-alert-icon {
+  height: 40px;
+  width: 40px;
+}
+
+.modal-footer span.button-group {
+   margin-right: 0px;
+}
+.detail-table {
+  width: 100%;
+}
+.detail-table tbody td:first-child {
+  width: 133px;
+  color: #6d6d6d;
+}
+.detail-table tbody td:not(:first-child) {
+  color: #333333;
+}
+.detail-table tbody td {
+  padding: 5px;
+  vertical-align: top;
+}
+.detail-header-label {
+  font-size: 1.2em;
+  color: #999999;
+  margin: 0 0 15px 0;
+  position: relative;
+}
+.detail-table .detail-label td {
+  font-size: 1.2em;
+  color: #999999;
+}
+.detail-table-caption {
+  margin: 0 0 5px 0;
+}
+
+.time-int {
+   margin: 0 20px 0 0;
+   display: inline-block;
+}
+.schedule-details > div {
+   margin: 0 0 10px 0;
+}
+.single-line-checkbox {
+   margin: 5px 0 5px 0;
+}
+.offset-check {
+  margin-left: 5px;
+}
+
+.h-line {
+  border-top: 1px solid #ebebeb;
+    position: absolute;
+    height: 1px;
+    top: 13px;
+    right: 0;
+    width: 78%;
+}
+
+
+.qtip-light {
+	background-color: #fff;
+    border: 1px solid #E4E4E4;
+    color: #454545;
+    padding: 4px;
+    border-radius: 3px;
+    -webkit-box-shadow: 2px 2px 4px 0px #999999;
+    -moz-box-shadow: 2px 2px 4px 0px #999999;
+    box-shadow: 2px 2px 4px 0px #999999;
+}
+
+.qtip-light .qtip-titlebar{
+  background-color: #f1f1f1;
+}
+.qtip-light .qtip-content {
+    position: relative;
+    padding: 5px 9px;
+    overflow: hidden;
+    text-align: left;
+    word-wrap: break-word;
+    font-size: 1.2em;
+}
+
+.qtip-log-details {
+  min-width: 450px;
+}
+
+.log-details-list li {
+   padding: 3px 0;
+}
+
+.ico-detail-pos {
+  margin: 0 5px 0 0;
+  position: relative;
+  top: -2px;
+}
+.ico-detail {
+  width: 24px;
+  height: 24px;
+}
+
+.ico-arrow {
+  position: relative;
+    top: 24px;
+    left: -24px;
+    width: 75px;
+    height: 75px;
+}
+
+.close-img {
+	background-image: url("../assets/img/migration/close_white.svg") !important;
+    background-repeat: no-repeat !important; 
+    width: 16px;
+    height: 16px;
+}
+
+.help-img {
+	background-image: url("../assets/img/migration/help_white.svg") !important;
+    background-repeat: no-repeat !important; 
+    width: 16px;
+    height: 16px;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #fff;
+}
+
+.form-control {
+    border: 1px solid #CCCCCC;
+}
+.pre-nbu-details {
+   background-color: #fff;
+   border: none;
+   font-family: "Roboto Regular";
+   height: 100% !important;
+}
+
+.image-types {
+
+   list-style: none;
+   li {
+      width: auto;
+      label {
+         input {
+            margin-right: 5px;
+         }
+      }
+      i {
+         margin: 0 5px;
+         font-size: 1.2rem;
+         color: #949494;
+         position: relative;
+         top: 2px;
+      }
+   }
+}
+
+.start-page {
+  margin-top: 50px;
+  width: 800px;
+  .step-img {
+    width: 800px;
+  }
+  .step-text-panel {
+    position: relative;
+    .step-text {
+      width: 270px;
+      float: left;
+    }
+    .server {
+         position: relative;
+         left: 0px;
+    }
+    .policy {
+        position: relative;
+         left: 60px;
+    }
+    .calendar {
+       position: relative;
+       left: 350px;
+       top: -55px;
+    }
+  }
+}
+
+
+
+
+
+/**
+ *  Do not remove the comments below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector

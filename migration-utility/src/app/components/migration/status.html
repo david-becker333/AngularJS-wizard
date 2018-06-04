@@ -1,0 +1,364 @@
+<div class="page-title">
+    {{ 'migration.migrationutility' | translate }}</div>
+<div class="page-content-divider"></div>
+<div class="page-description">
+    {{ 'migration.migrationutility.desc' | translate }}
+    <a href="#">{{ 'migration.learnmore' | translate }}</a>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-sm-4">
+        <button class="btn--primary size--default" ng-click="$state.go('app.migrationwizard')" >{{ 'migration.newmigrationjob' | translate }}</button>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-sm-4">
+        <h3>{{ 'migration.migrationstatus' | translate }}</h3>
+    </div>
+</div>
+<br>
+
+<table st-table="jobStatuses" class="migration-details-table table table-mu">
+    <thead>
+        <tr>
+            <th></th>
+            <th class="col-xs-1 text-center">{{ 'migration.status.migrationtaskid' | translate }}</th>
+            <th class="col-xs-2 text-left">{{ 'migration.status.progress' | translate }}</th>
+            <th class="col-xs-2 text-left">{{ 'migration.status.migrationwindow' | translate }}</th>
+            <th class="col-xs-1 text-right">{{ 'migration.status.imagesmigrated' | translate }}</th>
+            <th class="col-xs-1 text-right">{{ 'migration.status.datamoved' | translate }}</th>
+            <th class="col-xs-1 text-right">{{ 'migration.status.transferrate' | translate }}</th>
+            <th class="col-xs-1 text-right">{{ 'migration.status.policyconverted' | translate }}</th>
+            <th class="col-xs-2 text-left">{{ 'migration.status.status' | translate }}</th>
+            <th class="col-xs-3 text-left">{{ 'migration.status.actions' | translate }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat-start="job in jobStatuses" ng-class="{ selected: job.expanded === true }">
+            <td class="job-details-arrow-col">
+                <span ng-if="!job.expanded" ng-click="loadJobDetails(job)" class="fa fa-angle-down job-detail-arrow"></span>
+                <span ng-if="job.expanded === true" ng-click="job.expanded = false" class="fa fa-angle-up job-detail-arrow"></span>
+            </td>
+            <td class="col-xs-1 text-center">{{job.migrationJobId}}</td>
+            <td class="col-xs-2 text-left">{{job.migrationProgress}}</td>
+            <td class="col-xs-2 text-left">{{job.migrationWindow}}</td>
+            <td class="col-xs-1 text-right">{{job.imagesMigrated}}</td>
+            <td class="col-xs-1 text-right">{{job.dataMoved}} MB</td>
+            <td class="col-xs-1 text-right">{{job.transferRate}}</td>
+            <td class="col-xs-1 text-right">{{job.policiesConverted}}</td>
+            <td class="col-xs-2 text-left">{{job.status}}</td>
+            <td class="col-xs-3 text-left">
+                <a ng-click="openViewMigratioJobDetails (job.migrationJobId)">{{ 'migration.status.view' | translate }}</a>&nbsp;
+                <a ng-click="openCancelJobModal(job.migrationJobId)" ng-show="isQueuedJob(job.status)">{{ 'migration.status.cancel' | translate }}</a>
+            </td>
+        </tr>
+        <tr ng-if="job.expanded" ng-repeat-end>
+
+            <td colspan="10" class="job-details-expander-col">
+                <table class="job-details-table">
+                    <tbody>
+                        <tr ng-repeat="jobDetail in job.details">
+                            <td class="detail-offset-col">
+                                <div class="detail-offset"></div>
+                            </td>
+                            <td class="col-xs-1 text-center detail-offset-col"></td>
+                            <td class="col-xs-2 text-left">{{ 'migration.status.day' | translate }}&nbsp;{{($index + 1)}}</td>
+                            <td class="col-xs-2 text-left">
+                                <div class="progress-time">{{jobDetail.progressTime}}</div>
+                                <div class="stack-bar-wrapper">
+                                    <div class="stacked-bar-graph">
+                                        <div style="width:{{ calculateActual(jobDetail.progressActual, jobDetail.progressScheduled) }}%" class="actual"></div>
+                                        <div style="width:{{ calculateScheduled(jobDetail.progressActual, jobDetail.progressScheduled) }}%" class="scheduled"></div>
+                                    </div>
+                                    <div class="stacked-bar-graph">
+                                        <div style="width:{{ calculateOverage(jobDetail.progressActual, jobDetail.progressScheduled) }}%" class="over-actual"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col-xs-1 text-right">{{jobDetail.imagesMigrated}}</td>
+                            <td class="col-xs-1 text-right">{{jobDetail.dataMoved}}</td>
+                            <td class="col-xs-1 text-right">{{jobDetail.transferRate}}</td>
+                            <td class="col-xs-1 text-right">{{jobDetail.policiesConverted}}</td>
+                            <td class="col-xs-2 text-left">{{jobDetail.status}}</td>
+                            <td class="col-xs-3 text-left job-actions-col">
+                                <a ng-click="openViewNbaJobDetails(jobDatail.id)">{{ 'migration.status.jobdetails' | translate }}</a>&nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<script type="text/ng-template" id="dialog_view_migration_details.html">
+
+  <div class="modal-header">
+        <button type="button" class="close close-img" ng-click="cancel()" aria-label="Close"></button>
+        <button type="button" class="close help-img hidden" aria-label="Help"></button>
+        <h3 class="modal-title">{{ 'migration.taskdetails.modal.taskconfigdetails' | translate }}</h3>
+    </div>
+    <div class="modal-body modal-body-wizard">
+        <div class="body-content">
+            <h2>{{ 'migration.taskdetails.modal.jobid' | translate }}&nbsp;{{migrationJobDetails.id}}</h2>
+            <br>
+            <div class="row">
+
+                <div class="col-sm-5">
+                    <div class="detail-header-label">
+                        
+                        <span class="ico-detail-pos"><img ng-src="{{contextPath}}assets/img/migration/ico-source-destination.svg" class="ico-detail"></span>{{ 'migration.taskdetails.modal.source' | translate }}
+                    
+                    </div>
+                    <table class="detail-table">
+                      
+                        <tr>
+                            <td>{{ 'migration.taskdetails.modal.mediaserver' | translate }}:</td>
+                            <td>{{migrationJobDetails.source.mediaServer}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'migration.taskdetails.modal.diskpool' | translate }}:</td>
+                            <td>{{migrationJobDetails.source.diskPool}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-sm-2">
+                    <img ng-src="{{contextPath}}assets/img/migration/ico-arrow.svg" class="ico-arrow"></span>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="detail-header-label">
+                        <span class="ico-detail-pos"><img ng-src="{{contextPath}}assets/img/migration/ico-source-destination.svg" class="ico-detail"></span>{{ 'migration.taskdetails.modal.dest' | translate }}
+                    </div>
+                    <table class="detail-table">
+                        <tr>
+                            <td>{{ 'migration.taskdetails.modal.mediaserver' | translate }}:</td>
+                            <td>{{migrationJobDetails.destination.mediaServer}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'migration.taskdetails.modal.diskpool' | translate }}:</td>
+                            <td>{{migrationJobDetails.destination.diskPool}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <br>
+             <br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="detail-header-label">
+                        <span class="ico-detail-pos"><img ng-src="{{contextPath}}assets/img/migration/ico-selection-criteria.svg" class="ico-detail"></span>Selection Criteria
+                          <div class="h-line"></div>
+                   </div>     
+                    <table class="detail-table">
+                        <tr>
+                            <td>{{ 'migration.taskdetails.modal.policytype' | translate }}:</td>
+                            <td>
+                                <ul class="policy-types">
+                                    <li ng-repeat="type in migrationJobDetails.criteria.policyTypes track by $index">{{type}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'migration.taskdetails.modal.policyname' | translate }}:</td>
+                            <td>{{migrationJobDetails.criteria.policyName}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'migration.taskdetails.modal.imgtype' | translate }}:</td>
+                            <td>{{migrationJobDetails.criteria.imageType}}</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="detail-header-label">
+                        <span class="ico-detail-pos"><img ng-src="{{contextPath}}assets/img/migration/ico-policy-conversion.svg" class="ico-detail"></span>{{ 'migration.taskdetails.modal.policyconv' | translate }}
+                         <div class="h-line"></div>
+                    </div>
+                    <div class="form-inline single-line-checkbox offset-check">
+                      <label><input name="policy-conversion" type="checkbox" disabled="true" ng-checked="migrationJobDetails.policy.forceJobCompletion">&nbsp;{{ 'migration.taskdetails.modal.policyconv.desc' | translate }}</label>
+                    </div>
+                  </div>
+
+            </div>
+            <br>
+              <br>
+            <div class="row">
+                <div class="col-xs-6">
+
+                    <div class="detail-table-caption">{{ 'migration.taskdetails.modal.caption.stu' | translate }}</div>
+        
+                    <table id="policyConversionMapId" st-table="migrationJobDetails.policy.stuPolicies" class="table table-bordered table-mu">
+                        <thead>
+                            <tr>
+                                <th class="text-center col-sm-3"> {{ 'migration.taskdetails.modal.current.stu' | translate }}</th>
+                                <th class="text-center col-sm-3"> {{ 'migration.taskdetails.modal.new.stu' | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="policy in migrationJobDetails.policy.stuPolicies">
+                                <td>
+                                    {{ policy.current }}
+                                </td>
+                                <td>
+                                    {{ policy.new }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <div class="col-xs-6">
+                    <div class="detail-table-caption">{{ 'migration.taskdetails.modal.caption.stu' | translate }}</div>
+                   
+                    <table id="policyConversionMapId" st-table="migrationJobDetails.policy.slpPolicies" class="table table-bordered table-mu">
+                        <thead>
+                            <tr>
+                                <th class="text-center col-sm-3"> {{ 'migration.taskdetails.modal.current.slp' | translate }}</th>
+                                <th class="text-center col-sm-3"> {{ 'migration.taskdetails.modal.new.slp' | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="policy in migrationJobDetails.policy.slpPolicies">
+                                <td>
+                                    {{ policy.current }}
+                                </td>
+                                <td>
+                                    {{ policy.new }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+             <br>
+            <br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="detail-header-label">
+                        <span class="ico-detail-pos"><img ng-src="{{contextPath}}assets/img/migration/ico-schedule.svg" class="ico-detail"></span>{{ 'migration.taskdetails.modal.schedule' | translate }}
+                        <div class="h-line" style="width: 77%;"></div>
+                    </div>
+                    <table class="detail-table">
+                        <tr>
+                            <td>{{ 'migration.taskdetails.modal.startdate' | translate }}:</td>
+                            <td>{{migrationJobDetails.schedule.startDate | date: 'MM/dd/yyyy'}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'migration.taskdetails.modal.schedule.window' | translate }}:</td>
+                            <td>
+                               <div class="schedule-details"> 
+                                <div>
+                                    <div class="time-int">{{ 'migration.taskdetails.modal.starttime' | translate }}:&nbsp;{{migrationJobDetails.schedule.startTime | date:'h:mm a'}}</div>
+                                    <div class="time-int">{{ 'migration.taskdetails.modal.endtime' | translate }}:&nbsp;{{migrationJobDetails.schedule.endTime | date:'h:mm a'}}</div>
+                                </div>
+                                <div>{{ 'migration.taskdetails.modal.duration' | translate }}:&nbsp;{{migrationJobDetails.schedule.durationTime}}&nbsp;{{ 'migration.taskdetails.modal.hours' | translate }}</div>
+                                <div> 
+                                    <div class="form-inline single-line-checkbox">
+                                      <label><input name="force-migration" type="checkbox" disabled="true" checked>&nbsp;{{ 'migration.taskdetails.modal.forcecompletion' | translate }}</label>
+                                    </div>
+                                </div>
+                               </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'migration.taskdetails.modal.runfor' | translate }}:</td>
+                            <td>{{migrationJobDetails.schedule.durationDays}}&nbsp;{{ 'migration.taskdetails.modal.days' | translate }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ 'migration.taskdetails.modal.daysofweek' | translate }}:</td>
+                            <td>
+                                 <ul class="schedule-dow">
+                                    <li ng-repeat="day in daysOfWeekOptions track by $index">
+                                        <label for="{{day.label}}Id">
+                                            <input id="{{day.label}}Id" type="checkbox"  disabled="true" ng-checked="migrationJobDetails.schedule.daysOfWeek[day.label] ? true : false"> {{day.label}}</label>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <span class="button-group">
+         <button type="button" id="closeBtn" class=" btn--primary size--default" ng-click="cancel()" >{{'label.close' | translate}}</button>
+    
+        </span>
+
+    </div>
+</script>
+
+<script type="text/ng-template" id="dialog_cancel_job.html">
+    <div class="modal-header">
+        <button type="button" ng-click="cancel()" class="close close-img" aria-label="Close"></button>
+        <button type="button" class="close help-img hidden" aria-label="Help"></button>
+        <h3 class="modal-title">{{ 'migration.status.modal.canceljob' | translate }}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-xs-2 modal-alert"><img src="assets/img/Warning.png" class="modal-alert-icon"></div>
+                <div class="col-xs-10">
+                    {{ 'migration.status.modal.confirmcancel1' | translate }}<br><br>{{ 'migration.status.modal.confirmcancel2'
+                    | translate }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+
+        <span class="button-group">
+           <button type="button" id="acceptBtn" class="btn--primary size--default" ng-click="accept()" >{{'label.ok' | translate}}</button>
+           <button type="button" id="closeBtn" class="btn--secondary size--default" ng-click="cancel()" >{{'label.close' | translate}}</button>
+    
+        </span>
+
+    </div>
+</script>
+
+<script type="text/ng-template" id="dialog_view_nba_job_details.html">
+    <div class="modal-header">
+        <button type="button" ng-click="cancel()" class="close close-img" aria-label="Close"></button>
+        <button type="button" class="close help-img hidden" aria-label="Help"></button>
+        <h3 class="modal-title">{{ 'migration.status.modal.jobdetails' | translate }}</h3>
+    </div>
+    <div class="modal-body modal-body-wizard">
+        <div class="body-content">
+            <pre class="pre-nbu-details">
+            {{nbaJobDetails.message}}
+            </pre>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <span class="button-group">
+         <button type="button" id="closeBtn" class=" btn--primary size--default" ng-click="cancel()" >{{'label.close' | translate}}</button>
+    
+        </span>
+
+    </div>
+</script>

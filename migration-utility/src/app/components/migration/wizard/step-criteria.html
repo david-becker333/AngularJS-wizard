@@ -1,0 +1,117 @@
+<form id="wizardForm" name="wizardForm" class="form-horizontal" role="form" form-step-validity>
+    <div class="">
+        
+        <p>{{ 'migration.wizard.policydescription' | translate }}</p>
+        <br>
+        <div class="">
+            <div class="form-group"  ng-class="{ 'has-error': wizardForm.policyTypeLength.$invalid }">
+                <div class="col-sm-2">
+                    <label>
+                        {{ 'migration.wizard.policytype' | translate }}
+                    </label>
+                    <span class="required-indicator">*</span>
+                </div>
+                <div class="col-sm-9">
+                   <div>
+                    <div class="policy-type-toggles">
+                        <a id="selectAllPolicyTypes" ng-click="selectAllPolicyTypes()">{{ 'label.selectall' | translate }}</a>
+                        <a id="clearAllPolicyTypes"ng-click="clearAllPolicyTypes()">{{ 'label.clearall' | translate }}</a>
+                    </div>
+                    <ul class="policy-types">
+                        <li ng-repeat="type in context.jobModel.policyTypes track by $index">
+                            <label for="{{type.label}}Id">
+                            <input id="{{type.label}}Id" type="checkbox" ng-model="type.value" ng-change="setPolicyTypesMinLength()">
+                            {{type.label}}
+                            </label>
+                        </li>    
+                    </ul>
+                   
+                   <input style="display:none" name="policyTypeLength" type="number" min="1" min-err-msg="policytype.min" ng-model="policyTypesMinSelected"/> 
+                
+                 </div><div class="clearfix"></div>
+                  <p ng-if="!policyTypesMinSelectedPristine && policyTypesMinSelected < 1" class="help-block has-error error-msg">{{ 'error.policytype.min' | translate }}</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="policyNameId">
+                        {{ 'migration.wizard.policyname' | translate }}
+                    </label>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input id="policyNameId" class="form-control policy-name" ng-model="context.jobModel.policyName">
+                        </div>
+                        <div class="col-sm-6 policy-name-cs">{{ 'migration.wizard.casesensitive' | translate }}</div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="policy-name-notes">
+                                <p>{{ 'migration.wizard.policyname.p1' | translate }}</p>
+                                <ul>
+                                    <li>{{ 'migration.wizard.policyname.p2' | translate }}</li>
+                                    <li>{{ 'migration.wizard.policyname.p3' | translate }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+         <div class="">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label>{{ 'migration.wizard.imagetype' | translate }}
+                    </label>
+                </div>
+                <div class="col-sm-8 image-types-opts">  
+                    <ul class="image-types">
+                        <li>
+                            <label for="imageTypeId">
+                               <input id="imageTypeId" type="radio" ng-model="context.jobModel.imageType" ng-value="imageTypes.ALL_IMAGES">
+                               {{ 'migration.wizard.allimages' | translate }}<i qtip-tooltip alt="{{ 'migration.wizard.allimages.tooltip' | translate }}" class="fa fa-info-circle"></i>
+
+                            </label>
+                        </li>
+                        <li>
+                          <label for="imageTypeFullId">
+                              <input id="imageTypeFullId" type="radio" ng-model="context.jobModel.imageType" ng-value="imageTypes.ONLY_FULL_IMAGES">
+                             {{ 'migration.wizard.onlyfullimages' | translate }}<i qtip-tooltip alt="{{ 'migration.wizard.onlyfullimages.tooltip' | translate }}" class="fa fa-info-circle"></i>
+                             </label>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!--
+         <div class="">
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="basedOnTimeId">{{ 'migration.wizard.basedontime' | translate }}</label>
+                </div>
+                <div class="col-sm-3">
+                    <select id="basedOnTimeId" class="form-control"
+                            ng-model="context.jobModel.basedOnTime"
+                            required required-err-type="error.basedontime.required">
+                       <option selected value="">{{ 'label.select' | translate }}</option>
+                       <option value="most-recent">{{ 'migration.wizard.mostrecent' | translate }}</option>
+                       <option value="all">{{ 'migration.wizard.all' | translate }}</option>
+                       <option value="custom">{{ 'migration.wizard.custom' | translate }}</option>
+                       
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        -->
+
+    </div>
+</form>

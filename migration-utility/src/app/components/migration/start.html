@@ -1,0 +1,22 @@
+<div class="page-title">
+    {{ 'migration.migrationutility' | translate }}</div>
+<div class="page-content-divider"></div>
+<div class="page-description">{{ 'migration.migrationutility.desc' | translate }}
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <button id="startNewTaskID" class="btn--primary size--default" ng-click="$state.go('app.migrationwizard')">{{ 'migration.setupmigrationjob' | translate }}</button>
+    </div>
+</div>
+<br>
+<div class="start-page">
+    <div class="step-img">
+        <img src="{{contextPath}}assets/img/migration/migration-horizontal-layout.svg">
+    </div>
+    <div class="step-text-panel">
+        <div class="step-text server">{{ 'migration.start.server' | translate }}</div>
+        <div class="step-text policy">{{ 'migration.start.policy' | translate }}</div>
+        <div class="step-text calendar">{{ 'migration.start.calendar' | translate }}</div>
+    </div>
+</div>
+<div class="clearfix"></div>

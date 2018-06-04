@@ -1,0 +1,55 @@
+<div class="footerbar navbar-fixed-bottom ">
+    <a class="fa fa-angle-up fa-2x text-muted footer-expand-icon" id="footerexpandicon"></a>
+    <img src="assets/img/veritas_logo_red.svg" class="footer-logo"/>
+</div>
+
+<div class="footercontent navbar-fixed-bottom" id="footerexpander" style="display: none;">
+    <div class=" col-sm-4 footercontent-panel">
+        <h3>Documentation</h3>
+        <img class="footer-expand-icon pull-left" src="assets/img/nav_icons/misc/Documentation.svg">
+
+        <ul class="footerlist">
+            <li><a>Hardware Installation and Initial Configuration Guide</a></li>
+            <li><a>Administrator's Guide</a></li>
+            <li><a>View Compatibility Lists</a></li>
+            <li><a>View and download Whitepapers</a></li>
+        </ul>
+    </div>
+
+    <div class=" col-sm-4 footercontent-panel">
+        <h3>Getting Help</h3>
+        <img class="footer-expand-icon pull-left" src="assets/img/nav_icons/misc/Help.svg">
+
+        <ul class="footerlist">
+            <li><a>NetBackup Appliance Technical Support</a></li>
+            <li><a>NetBackup Appliance Technical Forums</a></li>
+            <li><a>Search Knowledge Base</a></li>
+        </ul>
+    </div>
+
+    <div class=" col-sm-4 footercontent-panel">
+        <h3>Connect</h3>
+        <img class="footer-expand-icon pull-left" src="assets/img/nav_icons/misc/Global.svg">
+
+        <ul class="footerlist">
+            <li><a>Veritas Connect</a></li>
+            <li><button class="btn--primary size--default">Share Ideas</button></li>
+            <li><button class="btn--primary size--default">Get Feedback</button></li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+    $(function () {
+        $("#footerexpandicon").click(function () {
+
+            if (!$(this).hasClass("fa-rotate-180"))
+                $(this).addClass("fa-rotate-180");
+            else
+                $(this).removeClass("fa-rotate-180");
+
+            $("#footerexpander").slideToggle(200);
+        });
+    });
+</script>

@@ -1,0 +1,42 @@
+<multi-step-container steps="steps" on-step-change="stepObserver(this)" class="wizard-nav-tabs">
+    <div>
+        <ul class="nav-breadcrumbs">
+          <li><h2>Migration Utility</h2></li>
+          <li><span class="arrow fa fa-play"></span></li>
+          <li><h2>Configure New Migration Job</h2></li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+    <div>
+        <ul class="nav nav-tabs">
+            <li ng-repeat="step in $getSteps() track by step.title" ng-class="{'list-group-item': true, 'active': $getActiveIndex() === ($index + 1) }"
+                role="presentation">
+                <div class="wizard-nav-tab-content" ng-class="{'vline': $index > 0}">
+                    <span class="wizard-nav-tab-check" ng-class="{'fa fa-check-circle': step.data.stepComplete }"></span>
+                    <span class="wizard-nav-tab-step">{{$index + 1}}</span>
+                    <span class="wizard-nav-tab-text">{{step.title}}</span>
+                </div>
+                </li>
+        </ul>
+    </div>
+    <div class="wizard-step-body">
+
+        <main step-container>
+            <!-- step content here -->
+        </main>
+
+    </div>
+    <div>
+        <span class="button-group">
+        <button type="button" class=" btn--secondary size--default" id="startMigrationBackBtn" ng-class="{'hidden': $isFirst()}" ng-click="$previousStep()">{{ 'label.back' | translate }}</button>
+
+            <button type="submit" class=" btn--primary size--default" id="startMigrationNextBtn"
+            ng-class="{'hidden': $isLast()}" ng-disabled="$getActiveStep().hasForm && !$getActiveStep().valid" ng-click="$nextStep()">{{ 'label.next' | translate }}</button>
+            
+            <button type="button" class=" btn--primary size--default" id="startMigrationBtn" ng-disabled="$getActiveStep().hasForm && !$getActiveStep().valid"  ng-class="{'hidden': !$isLast()}" ng-click="startMigration()">{{ 'migration.wizard.startmigration' | translate }}</button>
+        </span>
+     
+        <button type="button" class=" btn--secondary size--default last" id="startMigrationCancelBtn" ng-click="cancelWizard()">{{ 'label.cancel' | translate }}</button>
+    </div>
+
+</multi-step-container>

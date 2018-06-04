@@ -1,0 +1,140 @@
+
+<header><div class="app-header">
+
+    <div class="productname-bg">
+        <ul>
+            <!--<li class="dropdown app-icon"></li>-->
+            <li style="font-size: 1.5em; margin: 0 10px;">AVILON</li>
+            <li class="app-info">
+                <ul>
+                    <li class="dropdown user">
+                        <a href="#" class="data-toggle disabled" ng-model="selectedAppliance" tabindex="5">
+                            Welcome [admin]
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="help"><a> <i class="fa fa-question-circle"></i> </a></li>
+                    <li class="divider"></li>
+                    <li class="logout">
+                        <a href="../login/login.html">Logout</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="about">
+                        <a>About</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="app-nav">
+        <nav role="navigation" aria-label="Site">
+            <ul class="primary-nav">
+                <li class="no-secondary-nav"><a href="../dashboard/dashboard.html" tabindex="1">Dashboard</a></li>
+                <li class="dropdown"><a class="data-toggle disabled" href="../monitor/monitor_hardware.html" tabindex="2">Monitor</a>
+                    <!-- Settings Sec Nav Row -->
+                    <div class="menu-row dropdown-menu navbar-secondary">
+                        <ul class="">
+                            <li><a href="../monitor/monitor_hardware.html">Hardware</a></li>
+                            <li><a href="../monitor/monitor_scsp.html">SCSP Events</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="dropdown active"><a class="data-toggle disabled" href="../manage/storage.html" tabindex="3">Manage</a>
+                    <!-- Settings Sec Nav Row -->
+                    <div class=" menu-row dropdown-menu navbar-secondary">
+                        <ul class="">
+                            <li><a href="../manage/storage.html">Storage</a></li>
+                            <li><a href="../manage/manage_host_data_buffer.html">Hosts</a></li>
+                            <li><a href="../manage/manage_appliance_restore.html">Appliance Restore</a></li>
+                            <li><a href="../manage/manage_license.html">Licenses</a></li>
+                            <li><a href="../manage/manage.html">Migration Utility</a></li>
+                            <li><a href="../manage/manage_software_updates.html">Software Updates</a></li>
+                            <li><a href="../manage/manage_additional_servers.html">Additional Servers</a></li>
+                            <li><a href="../manage/certificates.html">Certificates</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="dropdown"><a class="data-toggle disabled" href="../settings/settings_notifications.html" tabindex="4">Settings</a>
+                    <!-- Settings Sec Nav Row -->
+                    <div class=" menu-row dropdown-menu navbar-secondary">
+                        <ul class="">
+                            <li><a href="../settings/settings_notifications.html">Notifications</a></li>
+                            <li><a href="../settings/settings_network.html">Network</a></li>
+                            <li><a href="../settings/settings_date_time.html">Date and Time</a></li>
+                            <li><a href="../settings/settings_users.html">Users</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <span class="connection-details">
+            <label>Connected to:</label>
+            <p>Master 5220: nbur420-205vm07</p>
+        </span>
+    </div>
+
+        <div class="secondaryNav">
+        <div class="app-header-sec">
+            <div class="menu-row">
+                <div class="navbar-secondary">
+                    <ul class="">
+                        <li><a href="storage.html">Storage</a></li>
+                        <li><a href="manage_host_data_buffer.html">Hosts</a></li>
+                        <li><a href="LoadLicense.action?token=09RI-2V9S-OTUV-765U-NLB7-KGRZ-9KU9-QR62">Appliance Restore</a></li>
+                        <li><a href="LoadLicense.action?token=09RI-2V9S-OTUV-765U-NLB7-KGRZ-9KU9-QR62">Licenses</a></li>
+                        <li class="active"><a href="manage_migration_policy.html">Migration Utility</a></li>
+                        <li><a href="manage_software_updates.html">Software Updates</a></li>
+                        <li><a href="manage_additional_servers.html">Additional Servers</a></li>
+                        <li><a href="certificates.html">Certificates</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.app-nav .dropdown').hover(function () {
+            $(this).children('.dropdown-menu').stop(true, true).delay(200).fadeIn(100);
+        }, function () {
+            $(this).children('.dropdown-menu').stop(true, true).delay(100).fadeOut(100);
+        });
+
+
+        $('.primary-nav li').click(function () {
+            //Primary Navigation highlight
+            $('.primary-nav li.active').removeClass('active');
+            $(this).addClass('active');
+
+            //Hide BCT and Secondary Nav by default
+            $('.app-header-sec').hide();
+
+            //Get index and use for static sec nav displays
+            var indexOfTab = $(this).index();
+            var noSecNav = $(this).hasClass('no-secondary-nav')
+            var hasSecNav = $(this).hasClass('has-secondary-nav')
+
+            if (!noSecNav && $(this).hasClass('dropdown')) {
+                indexOfTab--;
+                $('.app-header-sec').show();
+                $('.app-header-sec .menu-row').addClass('hide');
+                $('.app-header-sec .menu-row:eq(' + indexOfTab + ')').removeClass('hide');
+                //$('body').css('paddingTop', '95px');
+                //$('.app-header-bct').show();
+            }
+            else if (noSecNav) {
+                $('.app-header-sec .menu-row').addClass('hide');
+                //$('body').css('paddingTop', '42px');
+            }
+        });
+
+        $(".no-secondary-nav").on("click", function() {
+        });
+    });
+</script></header>
